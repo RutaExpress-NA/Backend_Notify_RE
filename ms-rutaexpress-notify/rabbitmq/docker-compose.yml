@@ -1,0 +1,54 @@
+# Clúster RabbitMQ de 2 nodos (rabbit1 + rabbit2).
+# Las credenciales y la cookie vienen del archivo .env (no se suben al repo).
+services:
+  rabbit1:
+    image: rabbitmq:management
+    container_name: rabbit1
+    hostname: rabbit1
+    restart: unless-stopped
+    environment:
+      RABBITMQ_ERLANG_COOKIE: ${ERLANG_COOKIE}
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
+    ports:
+      - "5672:5672"     # AMQP
+      - "15672:15672"   # panel web
+    volumes:
+      - ./cluster.conf:/etc/rabbitmq/conf.d/20-cluster.conf:ro
+      - rabbit1_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 10s
+      retries: 12
+      start_period: 20s
+    networks:
+      - rabbit-net
+
+  rabbit2:
+    image: rabbitmq:management
+    container_name: rabbit2
+    hostname: rabbit2
+    restart: unless-stopped
+    environment:
+      RABBITMQ_ERLANG_COOKIE: ${ERLANG_COOKIE}
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+    volumes:
+      - ./cluster.conf:/etc/rabbitmq/conf.d/20-cluster.conf:ro
+      - rabbit2_data:/var/lib/rabbitmq
+    depends_on:
+      rabbit1:
+        condition: service_healthy   # rabbit2 espera a que rabbit1 esté listo para unirse
+    networks:
+      - rabbit-net
+
+volumes:
+  rabbit1_data:
+  rabbit2_data:
+
+networks:
+  rabbit-net:
