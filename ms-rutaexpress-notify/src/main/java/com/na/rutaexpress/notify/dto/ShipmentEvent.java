@@ -6,11 +6,7 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
-/**
- * Evento que viaja por RabbitMQ cuando cambia el estado de un envio.
- * Lo envia shipments por HTTP y notify lo publica en el broker.
- * Constructor vacio + setters (via @Data): Jackson los necesita para deserializar al consumir.
- */
+
 @Data
 public class ShipmentEvent {
 

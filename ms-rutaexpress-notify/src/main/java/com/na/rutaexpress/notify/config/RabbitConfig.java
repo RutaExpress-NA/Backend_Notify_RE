@@ -24,13 +24,13 @@ public class RabbitConfig {
         return new TopicExchange(props.getExchanges().getEvents(), true, false);
     }
 
-    /** Direct: enruta por coincidencia exacta. Lo usan los comandos puntuales. */
+
     @Bean
     public DirectExchange commandsExchange() {
         return new DirectExchange(props.getExchanges().getCommands(), true, false);
     }
 
-    /** Dead Letter Exchange: recibe los mensajes rechazados desde las colas de trabajo. */
+
     @Bean
     public DirectExchange deadLetterExchange() {
         return new DirectExchange(props.getExchanges().getDlx(), true, false);
