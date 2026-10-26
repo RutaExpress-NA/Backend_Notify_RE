@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-/** Dominio LOGISTICA: avisa a bodega que debe preparar la recepcion de un envio aceptado. */
+//Dominio LOGISTICA: avisa a bodega que debe preparar la recepcion de un envio aceptado0
 @Slf4j
 @Component
 @RequiredArgsConstructor

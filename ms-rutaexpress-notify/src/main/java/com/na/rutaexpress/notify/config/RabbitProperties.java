@@ -4,11 +4,9 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-/**
- * Lee los nombres de la infraestructura desde application.properties (prefijo app.rabbitmq).
- * Es el unico punto por donde el resto del codigo conoce esos nombres:
- * ningun string de cola o exchange se escribe en clases de negocio.
- */
+
+ //Lee los nombres de la infraestructura desde application.properties (prefijo app.rabbitmq).
+
 @Data
 @Component
 @ConfigurationProperties(prefix = "app.rabbitmq")
@@ -20,7 +18,7 @@ public class RabbitProperties {
     private Routing routing = new Routing();
     private Retry retry = new Retry();
 
-    /** Solo demo: prefijo de trackingCode que dispara una falla temporal simulada. */
+    //Solo demo: prefijo de trackingCode que dispara una falla temporal simulada.
     private String simulateFailurePrefix = "";
 
     @Data

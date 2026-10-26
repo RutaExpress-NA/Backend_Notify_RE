@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-/** Dominio LOGISTICA: genera la etiqueta (ticket) de un envio aceptado. */
+//Dominio LOGISTICA: genera la etiqueta (ticket) de un envio aceptado
 @Slf4j
 @Component
 @RequiredArgsConstructor

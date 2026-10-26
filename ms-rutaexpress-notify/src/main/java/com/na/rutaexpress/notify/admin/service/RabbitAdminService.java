@@ -27,13 +27,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-/**
- * Toda la logica para crear y eliminar colas, exchanges y bindings en RabbitMQ.
- * El controller solo recibe la peticion y delega aqui.
- *
- * Los recursos que usa el propio sistema (colas, DLQ y exchanges definidos en
- * application.properties) estan PROTEGIDOS: no se pueden eliminar desde la API.
- */
+//Toda la logica para crear y eliminar colas, exchanges y bindings en RabbitMQ
+ 
+//El controller solo recibe la peticion y delega aqui
+
+//Los recursos que usa el propio sistema (colas, DLQ y exchanges definidos en application.properties estan protegidos, no se pueden eliminar desde la API
+
+
 @Slf4j
 @Service
 @RequiredArgsConstructor

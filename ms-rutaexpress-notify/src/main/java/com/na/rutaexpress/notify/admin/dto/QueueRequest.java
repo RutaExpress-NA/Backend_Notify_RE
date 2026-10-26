@@ -13,7 +13,7 @@ public class QueueRequest {
 
     private boolean durable = true;
 
-    /** Opcional: exchange al que van los mensajes rechazados. Si se envia, debe enviarse tambien deadLetterRoutingKey. */
+
     @Pattern(regexp = NamePattern.REGEX, message = NamePattern.MESSAGE)
     private String deadLetterExchange;
 

@@ -10,16 +10,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-/**
- * Decide que hacer con cada mensaje consumido:
- *
- *   exito                       -> ACK (el broker borra el mensaje de la cola)
- *   NonRecoverableException     -> NACK sin requeue -> DLX -> DLQ  (sin reintentos)
- *   otra falla (temporal)       -> reintenta hasta max-attempts; si se agotan -> NACK -> DLQ
- *
- * Los mensajes que van a la DLQ quedan registrados en el log y se conservan en la cola
- * para poder inspeccionarlos desde el panel.
- */
+
+
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -27,7 +19,7 @@ public class AckHandler {
 
     private final RabbitProperties props;
 
-    /** Trabajo concreto que hace cada consumidor con el mensaje. */
+    //Trabajo concreto que hace cada consumidor con el mensaje.
     @FunctionalInterface
     public interface MessageAction {
         void execute() throws Exception;
@@ -63,7 +55,7 @@ public class AckHandler {
         }
     }
 
-    /** NACK sin requeue: el broker lo envia al dead letter exchange y termina en la DLQ. */
+    // NACK sin requeue: el broker lo envia al dead letter exchange y termina en la DLQ
     private void reject(Channel channel, long deliveryTag, String queue,
                         ShipmentEvent event, String reason) throws IOException {
         channel.basicNack(deliveryTag, false, false);
