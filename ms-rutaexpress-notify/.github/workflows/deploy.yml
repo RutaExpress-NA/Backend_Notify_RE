@@ -33,7 +33,7 @@ jobs:
           echo " Construyendo imagen: rutaexpress-notify"
           echo " Tag: $IMAGE_TAG"
           echo "===================================="
-          docker build --no-cache -t $ECR_REGISTRY/rutaexpress-notify:$IMAGE_TAG .
+          docker build --no-cache -t $ECR_REGISTRY/rutaexpress-notify:$IMAGE_TAG ./ms-rutaexpress-notify
           echo ""
           echo "Build completado."
 
