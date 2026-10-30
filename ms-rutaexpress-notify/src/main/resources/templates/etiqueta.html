@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Etiqueta de envio</title>
+<style type="text/css">
+@page { size: 100mm 150mm; margin: 0mm; }
+body { margin: 0; padding: 0; background-color: #f1f0d6; font-family: Helvetica, Arial, sans-serif; color: #26263a; font-size: 9pt; }
+table { border-collapse: collapse; width: 100%; }
+td { padding: 0; vertical-align: top; }
+.stripe td { height: 5mm; font-size: 2pt; }
+.s1 { background-color: #ff5a5f; }
+.s2 { background-color: #ffffff; }
+.s3 { background-color: #5b6af0; }
+.top { position: absolute; top: 0mm; left: 0mm; width: 100mm; }
+.bottom { position: absolute; top: 145mm; left: 0mm; width: 100mm; }
+.content { position: absolute; top: 9mm; left: 6mm; width: 88mm; }
+.logo { font-family: Courier; font-size: 19pt; font-weight: bold; color: #5b6af0; line-height: 1.05; }
+.badge { background-color: #3fb0a8; color: #ffffff; font-weight: bold; font-size: 10pt; text-align: center; padding: 2mm 4mm; }
+.card { border: 1px dashed #5b6af0; padding: 3mm 4mm; margin-top: 4mm; }
+.lbl { font-size: 6.5pt; color: #7a7a94; letter-spacing: 1px; text-transform: uppercase; }
+.tracking { font-family: Courier; font-size: 17pt; font-weight: bold; padding-bottom: 2mm; }
+.name { font-size: 13pt; font-weight: bold; }
+.mail { font-size: 8.5pt; color: #7a7a94; padding-bottom: 2mm; }
+.addr { font-size: 11pt; font-weight: bold; }
+.city { font-size: 10pt; }
+.sep { border-top: 1px dashed #d8b9a0; padding-top: 2mm; margin-top: 2mm; }
+.big { font-family: Courier; font-size: 11pt; font-weight: bold; }
+.mid { font-size: 8pt; font-weight: bold; }
+.foot { position: absolute; top: 138mm; left: 0mm; width: 100mm; text-align: center; font-size: 7pt; color: #8a8a8a; }
+</style>
+</head>
+<body>
+<table class="stripe top" width="100%"><tr><td class="s1">&#160;</td><td class="s2">&#160;</td><td class="s3">&#160;</td><td class="s2">&#160;</td><td class="s1">&#160;</td><td class="s2">&#160;</td><td class="s3">&#160;</td><td class="s2">&#160;</td><td class="s1">&#160;</td><td class="s2">&#160;</td><td class="s3">&#160;</td><td class="s2">&#160;</td><td class="s1">&#160;</td><td class="s2">&#160;</td><td class="s3">&#160;</td><td class="s2">&#160;</td><td class="s1">&#160;</td><td class="s2">&#160;</td><td class="s3">&#160;</td><td class="s2">&#160;</td></tr></table>
+
+<div class="content">
+  <table width="100%"><tr>
+    <td width="58%"><div class="logo">Rutas<br />Express</div></td>
+    <td width="42%" class="badge">{{SERVICE}}</td>
+  </tr></table>
+
+  <div class="card">
+    <div class="lbl">C&#211;DIGO DE SEGUIMIENTO</div>
+    <div class="tracking">{{TRACKING}}</div>
+    <div class="sep"><div class="lbl">DESTINATARIO</div>
+      <div class="name">{{RECIPIENT}}</div>
+      <div class="mail">{{EMAIL}}</div>
+    </div>
+    <div class="sep"><div class="lbl">DIRECCI&#211;N DE ENTREGA</div>
+      <div class="addr">{{ADDRESS}}</div>
+      <div class="city">{{CITY}}</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <table width="100%"><tr>
+      <td width="27%"><div class="lbl">PESO</div><div class="big">{{WEIGHT}}</div></td>
+      <td width="46%" style="padding-left: 3mm; padding-right: 3mm;"><div class="lbl">{{STATUS}}</div><div class="mid">{{DATE}}</div></td>
+      <td width="27%" align="right"><div class="lbl">N&#176; ENV&#205;O</div><div class="big">{{SHIPMENT_NO}}</div></td>
+    </tr></table>
+  </div>
+
+  <table width="100%" style="margin-top: 4mm;"><tr>
+    <td width="72%"><img src="{{BARCODE_SRC}}" style="width: 62mm; height: 17mm;" /></td>
+    <td width="28%" align="right"><img src="{{QR_SRC}}" style="width: 17mm; height: 17mm;" /></td>
+  </tr></table>
+</div>
+
+<div class="foot">Escanea el QR para ver el estado de tu env&#237;o &#183; rutaexpress</div>
+<table class="stripe bottom" width="100%"><tr><td class="s1">&#160;</td><td class="s2">&#160;</td><td class="s3">&#160;</td><td class="s2">&#160;</td><td class="s1">&#160;</td><td class="s2">&#160;</td><td class="s3">&#160;</td><td class="s2">&#160;</td><td class="s1">&#160;</td><td class="s2">&#160;</td><td class="s3">&#160;</td><td class="s2">&#160;</td><td class="s1">&#160;</td><td class="s2">&#160;</td><td class="s3">&#160;</td><td class="s2">&#160;</td><td class="s1">&#160;</td><td class="s2">&#160;</td><td class="s3">&#160;</td><td class="s2">&#160;</td></tr></table>
+</body>
+</html>

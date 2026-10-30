@@ -1,18 +1,20 @@
 package com.na.rutaexpress.notify.consumer.notification;
 
-import com.na.rutaexpress.notify.config.RabbitProperties;
-import com.na.rutaexpress.notify.consumer.AckHandler;
-import com.na.rutaexpress.notify.dto.ShipmentEvent;
-import com.na.rutaexpress.notify.exception.NonRecoverableException;
-import com.rabbitmq.client.Channel;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import java.io.IOException;
+
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
+import com.na.rutaexpress.notify.config.RabbitProperties;
+import com.na.rutaexpress.notify.consumer.AckHandler;
+import com.na.rutaexpress.notify.dto.ShipmentEvent;
+import com.na.rutaexpress.notify.exception.NonRecoverableException;
+import com.rabbitmq.client.Channel;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /** Dominio NOTIFICACIONES: avisa por correo cada cambio de estado de un envio. */
 @Slf4j
@@ -30,9 +32,13 @@ public class EmailConsumer {
         ackHandler.process(channel, deliveryTag, props.getQueues().getEmail(), event, () -> {
             validate(event);
             simulateTemporaryFailure(event);
-            log.info("[EMAIL] Correo enviado a {} <{}>: tu envio {} cambio a estado {}",
+            log.info("[EMAIL] Correo enviado a {} <{}>: tu envio {} ({}) cambio a estado {}. Entrega en: {}{}",
                     event.getRecipientName(), event.getRecipientEmail(),
-                    event.getTrackingCode(), event.getNewStatus());
+                    event.getTrackingCode(),
+                    event.getServiceName() != null ? event.getServiceName() : "servicio no informado",
+                    event.getNewStatus(),
+                    event.getDeliveryAddress() != null ? event.getDeliveryAddress() : "direccion no informada",
+                    event.getDeliveryCity() != null ? ", " + event.getDeliveryCity() : "");
         });
     }
 

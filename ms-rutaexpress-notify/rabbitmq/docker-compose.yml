@@ -12,7 +12,7 @@ services:
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
     ports:
       - "5672:5672"     # AMQP
-      - "15672:15672"   # panel web
+      - "18672:15672"   # panel web
     volumes:
       - ./cluster.conf:/etc/rabbitmq/conf.d/20-cluster.conf:ro
       - rabbit1_data:/var/lib/rabbitmq
@@ -36,7 +36,7 @@ services:
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
     ports:
       - "5673:5672"
-      - "15673:15672"
+      - "18673:15672"
     volumes:
       - ./cluster.conf:/etc/rabbitmq/conf.d/20-cluster.conf:ro
       - rabbit2_data:/var/lib/rabbitmq

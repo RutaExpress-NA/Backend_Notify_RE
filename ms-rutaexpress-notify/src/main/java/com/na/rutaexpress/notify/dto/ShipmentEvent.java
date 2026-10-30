@@ -6,7 +6,12 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
-
+/**
+ * Evento que viaja por RabbitMQ cuando cambia el estado de un envio.
+ * Lo envia shipments por HTTP y notify lo publica en el broker.
+ * Los datos de entrega (direccion, ciudad, servicio y peso) los usan los correos,
+ * la etiqueta PDF y el ticket de picking.
+ */
 @Data
 public class ShipmentEvent {
 
@@ -23,6 +28,12 @@ public class ShipmentEvent {
 
     private String recipientName;
     private String recipientEmail;
+
+    // ---- datos de entrega (opcionales en el evento; cada documento valida los que necesita)
+    private String deliveryAddress;
+    private String deliveryCity;
+    private String serviceName;
+    private Double weightKg;
 
     private LocalDateTime occurredAt;  // si viene vacio, lo completa notify
 }

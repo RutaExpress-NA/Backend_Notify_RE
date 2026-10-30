@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Ticket de picking</title>
+<style type="text/css">
+@page { size: 100mm 150mm; margin: 0mm; }
+body { margin: 0; padding: 0; background-color: #ffffff; font-family: Helvetica, Arial, sans-serif; color: #111111; font-size: 9pt; }
+table { border-collapse: collapse; width: 100%; }
+td { padding: 0; vertical-align: top; }
+.content { position: absolute; top: 7mm; left: 7mm; width: 86mm; }
+.title { font-size: 15pt; font-weight: bold; border-bottom: 2px solid #111111; padding-bottom: 2mm; }
+.sub { font-size: 8pt; color: #555555; padding-top: 1mm; }
+.lbl { font-size: 6.5pt; color: #555555; letter-spacing: 1px; text-transform: uppercase; padding-top: 3mm; }
+.tracking { font-family: Courier; font-size: 17pt; font-weight: bold; }
+.val { font-size: 11pt; font-weight: bold; }
+.small { font-size: 9pt; }
+.box { width: 5mm; height: 5mm; border: 1px solid #111111; }
+.check td { padding-top: 2.5mm; font-size: 10pt; }
+.rule { border-top: 1px dashed #777777; margin-top: 3mm; }
+</style>
+</head>
+<body>
+<div class="content">
+  <div class="title">TICKET DE PICKING</div>
+  <div class="sub">Rutas Express &#183; bodega &#183; {{DATE}}</div>
+
+  <div class="lbl">C&#211;DIGO DE SEGUIMIENTO</div>
+  <div class="tracking">{{TRACKING}}</div>
+  <div style="margin-top: 2mm;"><img src="{{BARCODE_SRC}}" style="width: 80mm; height: 16mm;" /></div>
+
+  <div class="rule"></div>
+  <table width="100%"><tr>
+    <td width="55%"><div class="lbl">SERVICIO</div><div class="val">{{SERVICE}}</div></td>
+    <td width="25%"><div class="lbl">PESO</div><div class="val">{{WEIGHT}}</div></td>
+    <td width="20%"><div class="lbl">N&#176; ENV&#205;O</div><div class="val">{{SHIPMENT_NO}}</div></td>
+  </tr></table>
+
+  <div class="lbl">DESTINATARIO</div>
+  <div class="val">{{RECIPIENT}}</div>
+  <div class="lbl">DESTINO</div>
+  <div class="small">{{ADDRESS}}</div>
+  <div class="small">{{CITY}}</div>
+
+  <div class="rule"></div>
+  <div class="lbl">PASOS DE BODEGA</div>
+  <table class="check" width="100%">
+    <tr><td width="8%"><div class="box">&#160;</div></td><td>Retirar el paquete de la estanter&#237;a</td></tr>
+    <tr><td><div class="box">&#160;</div></td><td>Verificar peso y embalaje</td></tr>
+    <tr><td><div class="box">&#160;</div></td><td>Pegar la etiqueta de despacho</td></tr>
+    <tr><td><div class="box">&#160;</div></td><td>Cargar al veh&#237;culo de reparto</td></tr>
+  </table>
+</div>
+</body>
+</html>

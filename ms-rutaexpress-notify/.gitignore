@@ -34,3 +34,5 @@ build/
 application-local.yml
 application-secrets.yml
 .env
+
+documents/
