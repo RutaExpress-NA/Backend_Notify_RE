@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.na.rutaexpress.notify.config.RabbitProperties;
 import com.na.rutaexpress.notify.consumer.AckHandler;
 import com.na.rutaexpress.notify.dto.ShipmentEvent;
+import com.na.rutaexpress.notify.email.EmailService;
 import com.na.rutaexpress.notify.exception.NonRecoverableException;
 import com.rabbitmq.client.Channel;
 
@@ -24,6 +25,7 @@ public class EmailConsumer {
 
     private final AckHandler ackHandler;
     private final RabbitProperties props;
+    private final EmailService emailService;
 
     @RabbitListener(queues = "${app.rabbitmq.queues.email}")
     public void onMessage(ShipmentEvent event, Channel channel,
@@ -32,13 +34,12 @@ public class EmailConsumer {
         ackHandler.process(channel, deliveryTag, props.getQueues().getEmail(), event, () -> {
             validate(event);
             simulateTemporaryFailure(event);
-            log.info("[EMAIL] Correo enviado a {} <{}>: tu envio {} ({}) cambio a estado {}. Entrega en: {}{}",
-                    event.getRecipientName(), event.getRecipientEmail(),
-                    event.getTrackingCode(),
-                    event.getServiceName() != null ? event.getServiceName() : "servicio no informado",
-                    event.getNewStatus(),
-                    event.getDeliveryAddress() != null ? event.getDeliveryAddress() : "direccion no informada",
-                    event.getDeliveryCity() != null ? ", " + event.getDeliveryCity() : "");
+
+            EmailService.EmailResult result = emailService.send(event);
+            log.info("[EMAIL] {} a {} <{}> | estado {} | asunto: {} | vista previa: {}",
+                    result.sent() ? "Correo ENVIADO" : "Correo generado (SMTP desactivado)",
+                    event.getRecipientName(), event.getRecipientEmail(), event.getNewStatus(),
+                    result.subject(), result.preview());
         });
     }
 

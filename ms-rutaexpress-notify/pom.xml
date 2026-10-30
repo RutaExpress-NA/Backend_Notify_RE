@@ -62,6 +62,11 @@
 			<artifactId>spring-boot-starter-webmvc-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- Correos HTML por SMTP (opcional: si no hay servidor SMTP, se simula) -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
 		<!-- Documentos: HTML -> PDF y codigos de barras / QR -->
 		<dependency>
 			<groupId>org.xhtmlrenderer</groupId>
